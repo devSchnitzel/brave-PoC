@@ -1,0 +1,26 @@
+<h2 id="qmsg"></h2>
+
+<script>
+
+if(location.protocol=="http:"){
+qmsg.innerHTML="Please save this file (CTRL+S) and open it locally.";
+}else if(location.protocol=="chrome:"){
+chrome.remote.shell.openExternal('C:\\Windows\\notepad.exe')
+}else if(location.protocol=="file:"){
+
+	qmsg.innerHTML=`
+		<a href="chrome-extension://jdbefljfgobbmcidnmpjamcbhnbphjnb/chrome://brave/${location.pathname}">
+		Right click and open in new tab, then book mark the page by hitting the bookmark button and come back here.
+		</a>
+	`;
+	window.onblur=e=>{
+		qmsg.innerHTML="Use the middle mouse button to open the new bookmark";
+	}
+	
+}
+
+window.onmessage=e=>{
+qmsg.innerHTML="Whilst holding CTRL click the new bookmark.";
+}
+
+</script>

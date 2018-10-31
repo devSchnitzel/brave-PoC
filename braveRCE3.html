@@ -1,0 +1,32 @@
+<h2 id="qmsg"></h2>
+
+<script>
+
+if(location.protocol=="http:"){
+qmsg.innerHTML="Please save this file (CTRL+S) and open it locally.";
+}else if(location.protocol=="chrome:"){
+chrome.remote.shell.openExternal('C:\\Windows\\notepad.exe')
+}else if(location.protocol=="file:"){
+	if(location.search==""){
+	var qwin;
+	qmsg.innerHTML="click anywhere."
+document.onclick=e=>{
+
+	qwin=open("q","q","q");
+	setTimeout(function(){
+		qwin.location=location.href+"?q";
+	},300)
+}
+	}else{
+		document.write('<a title="a" alt=123 href="chrome://brave//'+location.pathname+'" ondrag="opener.postMessage(1,`*`);window.close()">Drag me into the main window (brave.com)</a>');
+	
+	}
+	
+	
+}
+
+window.onmessage=e=>{
+location="https://brave.com/favicon.ico"
+}
+
+</script>
